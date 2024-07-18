@@ -10,7 +10,7 @@ namespace Catalog.API.Products.CreateProduct
     public record CreateProductResponse(Guid Id);
     public class UpdateProductEndPoint : ICarterModule
     {
-        public void AddRoutes(IEndpointRouteBuilder app)
+    public void AddRoutes(IEndpointRouteBuilder app)
         {
             app.MapPost("/products",
                 async (CreateProductRequest request, ISender sender) =>
@@ -29,5 +29,6 @@ namespace Catalog.API.Products.CreateProduct
                 .WithDescription("Create Product");
 
         }
+ 
     }
 }

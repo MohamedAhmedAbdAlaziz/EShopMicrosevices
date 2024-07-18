@@ -1,4 +1,5 @@
 ﻿using Carter;
+using Catalog.API.Products.CreateProduct;
 using Mapster;
 using MediatR;
 
@@ -8,6 +9,20 @@ namespace Catalog.API.Products.UpdateProduct
         List<string> Category, string Description, string ImageFile,
         decimal Price);
     public record UpdateProductResponse(bool IsSuccess);
+    public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+    {
+        public UpdateProductCommandValidator()
+        {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("Id is Requesrd");
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is Requesrd")
+                .Length(2, 150).WithMessage("name must be between 2 and 150 digits");
+            //RuleFor(x => x.Category).NotEmpty().WithMessage("Category is Requesrd");
+            //RuleFor(x => x.ImageFile).NotEmpty().WithMessage("ImageFile is Requesrd");
+            RuleFor(x => x.Price).GreaterThan(0).WithMessage("Price must be more rhan 0");
+
+        }
+
+    }
     public class DeleteProductEndPoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)

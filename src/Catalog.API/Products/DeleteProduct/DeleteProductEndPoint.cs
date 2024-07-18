@@ -1,4 +1,5 @@
 ﻿using Carter;
+using Catalog.API.Products.DeleteProduct;
 using Mapster;
 using MediatR;
 
@@ -6,6 +7,15 @@ namespace Catalog.API.Products.DeleteProduct
 {
     public record DeleteProductRequest(Guid Id );
     public record DeleteProductResponse(bool IsSuccess);
+    public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
+    {
+        public DeleteProductCommandValidator()
+        {
+            RuleFor(x => x.Id).NotEmpty().WithMessage("Id is Requesrd");
+           
+        }
+
+    }
     public class DeleteProductEndPoint : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)

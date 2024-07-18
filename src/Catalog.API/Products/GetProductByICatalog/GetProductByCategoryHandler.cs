@@ -16,7 +16,7 @@ public record GetProductByCatalogResult(IEnumerable<Product> Products);
             var products = await session.Query<Product>().Where(x => x.Category.Contains(query.Catalog)).ToListAsync();
             if (products == null)
             {
-                throw new ProdutNotFoundException();
+                throw new Exception();
             }
             return new GetProductByCatalogResult(products);
         }

@@ -1,8 +1,12 @@
-﻿namespace Catalog.API.Exceptions
+﻿using BuildingBlocks.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Catalog.API.Exceptions
 {
-    public class ProdutNotFoundException:Exception
+    public class ProdutNotFoundException: NotFoundExcetion
     {
-        public ProdutNotFoundException():base("Product not found") {
+        public ProdutNotFoundException(Guid Id):base("Product", Id) 
+        {
         }
     }
 }

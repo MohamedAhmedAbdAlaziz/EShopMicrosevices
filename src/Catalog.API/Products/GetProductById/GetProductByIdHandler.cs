@@ -13,7 +13,7 @@ public record GetProductByIdResult(Product Product);
             logger.LogInformation("GetProductByIdQueryHandler.Handler called with {@query}", query);
             var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
             if (product == null) {
-                throw new ProdutNotFoundException(); 
+                throw new ProdutNotFoundException(query.Id); 
             }
             return new GetProductByIdResult(product);  
         }
