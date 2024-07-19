@@ -24,7 +24,7 @@ namespace Catalog.API.Products.CreateProduct
     }
     public class CreateProductCommandHandler(IDocumentSession session
        // ,IValidator<CreateProductCommand> validator
-       ,ILogger<CreateProductCommandHandler> Logger
+      // ,ILogger<CreateProductCommandHandler> Logger
         ) : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command,
@@ -36,7 +36,7 @@ namespace Catalog.API.Products.CreateProduct
             //{
             //    throw new ValidationException(errors.FirstOrDefault());
             //}
-            Logger.LogInformation("CreateProductCommandHandler.Hanlder called with {@command}", command);
+          //  Logger.LogInformation("CreateProductCommandHandler.Hanlder called with {@command}", command);
             var Product = new Product
             {
                 Name = command.Name,
