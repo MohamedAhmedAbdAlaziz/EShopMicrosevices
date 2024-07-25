@@ -2,8 +2,9 @@
 using Carter;
 
 namespace Basket.API.Basket.GetBasket
-{
-    public class GetBasketResponse(ShopingCart cart);
+{ 
+    public record GetBasketResponse(ShopingCart Cart);
+
     public class GetBasketEndPoints : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)

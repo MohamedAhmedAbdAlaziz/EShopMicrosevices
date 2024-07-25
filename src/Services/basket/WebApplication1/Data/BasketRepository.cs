@@ -4,14 +4,10 @@ using Marten;
 
 namespace Basket.API.Data
 {
-    public class BasketRepository : IBasketRepository
+    public class BasketRepository(IDocumentSession session) : IBasketRepository
     {
-        private readonly IDocumentSession session;
-
-        public BasketRepository(IDocumentSession session)
-        {
-            this.session = session;
-        }
+        
+        
 
         public async Task<bool> Delete(string userName, CancellationToken cancellationToken)
         {

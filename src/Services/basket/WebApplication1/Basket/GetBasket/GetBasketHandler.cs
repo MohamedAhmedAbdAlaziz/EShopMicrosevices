@@ -1,4 +1,5 @@
-﻿using Basket.API.Models;
+﻿using Basket.API.Data;
+using Basket.API.Models;
 
 namespace Basket.API.Basket.GetBasket
 {
@@ -7,11 +8,12 @@ namespace Basket.API.Basket.GetBasket
 public record GetBasketResult(ShopingCart Cart);
 
 
-    public class GetBasketQueryHandler : IQueryHandler<GetBasketQuery, GetBasketResult>
+    public class GetBasketQueryHandler(IBasketRepository repository) : IQueryHandler<GetBasketQuery, GetBasketResult>
     {
-        public async Task<GetBasketResult> Handle(GetBasketQuery request, CancellationToken cancellationToken)
+        public async Task<GetBasketResult> Handle(GetBasketQuery query, CancellationToken cancellationToken)
         {
-            return new GetBasketResult(new ShopingCart("swn"));
+            var basket = await repository.GetBasket(query.UserName, cancellationToken);
+            return new GetBasketResult(basket);
         }
     }
 }

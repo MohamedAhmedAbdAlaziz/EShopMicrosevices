@@ -7,5 +7,5 @@ namespace Basket.API.Data
         Task<ShopingCart> GetBasket(string userName, CancellationToken cancellationToken);
         Task<ShopingCart> StoreBasket(ShopingCart basket, CancellationToken cancellationToken);
         Task<bool> Delete(string userName, CancellationToken cancellationToken);
-    }
+    } 
 }
