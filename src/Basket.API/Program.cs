@@ -20,16 +20,17 @@ builder.Services.AddMarten(option =>
 }).UseLightweightSessions();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
-builder.Services.AddStackExchangeRedisCache(option =>
+builder.Services.AddStackExchangeRedisCache(options =>
 {
-    option.Configuration = builder.Configuration.GetConnectionString("Redis"); 
+ options.Configuration = builder.Configuration.GetConnectionString("Redis");
+  //  option.Configuration.GetValue<string>("ConnectionStrings:Redis");
+
 });
 //builder.Services.AddScoped<IBasketRepository>(pro =>
 //{
 //    var basketRepository = pro.GetRequiredService<BasketRepository>();
 //    return new CachedBasketRepository(basketRepository, pro.GetRequiredService<IDistributedCache>());
-//});
-builder.Services.AddScoped<IBasketRepository, CachedBasketRepository>();
+//}); 
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 var app = builder.Build();
 

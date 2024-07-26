@@ -26,8 +26,7 @@ namespace Basket.API.Data
             var basket= await repository.GetBasket(userName, cancellationToken);
             await cache.SetStringAsync(userName, JsonSerializer.Serialize(basket), cancellationToken);
             return basket;
-        }
-
+        } 
         public async Task<ShopingCart> StoreBasket(ShopingCart basket, CancellationToken cancellationToken)
         {
              await repository.StoreBasket(basket, cancellationToken);
