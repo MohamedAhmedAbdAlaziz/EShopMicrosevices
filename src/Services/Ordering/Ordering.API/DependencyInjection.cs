@@ -7,7 +7,7 @@
        
             return services;
         }
-        public static WebApplication USerAPIServices(this WebApplication app)
+        public static WebApplication UseAPIServices(this WebApplication app)
         {
             return app;
         }

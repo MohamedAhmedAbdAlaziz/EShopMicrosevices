@@ -1,21 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
 using Ordering.Domain.Models;
+using Ordering.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ordering.Domain.ValueObjects;
 
 namespace Ordering.Infrastructure.Configurations
 {
-    internal class OrderConfiguration : IEntityTypeConfiguration<Order>
-    { 
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
+    {
 
-        public void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).HasConversion(productId => productId.Value, dbId => ProductId.Of(dbId));
+            builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
+          
+
         }
     }
 }

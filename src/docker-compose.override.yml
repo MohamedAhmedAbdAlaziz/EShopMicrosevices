@@ -31,7 +31,14 @@ services:
          - "6379:6379"
      volumes:
        - postgres_basket:/var/lib/postgresql/data/
-   
+  orderdb:
+   container_name: orderdb
+   environment:
+      - Accept_EULA=Y
+      - SA_PASSWORD=Mohamed@123
+   restart: always
+   ports:
+      - "1433:1444"
   catalog.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
