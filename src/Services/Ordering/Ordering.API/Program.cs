@@ -7,11 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
-    .AddAPIServices();
+    .AddApiServices(builder.Configuration);
 
 
 var app = builder.Build();
-app.UseAPIServices();
+app.UseApiServices();
 app.MapGet("/", () => "Hello World!");
 
 
