@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BuildingBlocks.Messaging.Events
+﻿namespace Basket.API.Dtos
 {
-    public record BasketCheckoutEvent : IntergrationEvent
+    public class BasketCheckoutDto
     {
         public string UserName { get; set; } = default!;
         public Guid CustomerId { get; set; } = default!;
